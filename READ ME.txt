@@ -1,0 +1,22 @@
+PROJECT INI BERISI TENTANG SISTEM TANYA JAWAB BERBASIS WEB
+METODE : DGCNN
+framework : django python-web
+
+Sebelum Memulai
+1.Install python 3
+2.Install pip utk python 3
+3.Install Environment di python 3			py -m pip install --user virtualenv 
+4.Buat folder, Lalu masuk difolder tersebut
+5.Buat Enviromentnya di forlder tersebut		python -m venv env
+6.Untuk menginsall beberapa Libray. Jalankan enviroment tersebut sampai active
+7.Install Beberapa library di PIP env tersebut
+  - NLTK		- Urllib3
+  - Wikipedia-Api	- Django
+  - Numpy		- requests
+  - SPARQLWrapper  
+8. Donwload library stanford-ner-2018-10-16 dan taruh di folder libray
+Untuk  Menjalankannya
+1. Masuk ke directori env tersebut 	-->	Ex:  cd SKRIPSI-QAS\env\Scripts
+2. Mengaktivkan env  			-->	activate
+3. Masuk ke directori project tersebut  -->	cd ../../skripsi
+4. Jalankan server 			-->	python manage.py runserver
