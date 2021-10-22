@@ -13,8 +13,10 @@ Sebelum Memulai
   - NLTK		- Urllib3
   - Wikipedia-Api	- Django
   - Numpy		- requests
-  - SPARQLWrapper  
+  - SPARQLWrapper  	- certifi
 8. Donwload library stanford-ner-2018-10-16 dan taruh di folder libray
+
+
 Untuk  Menjalankannya
 1. Masuk ke directori env tersebut 	-->	Ex:  cd SKRIPSI-QAS\env\Scripts
 2. Mengaktivkan env  			-->	activate

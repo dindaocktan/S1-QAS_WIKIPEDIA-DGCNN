@@ -1,6 +1,7 @@
 # 14650036 - DINDA OCKTA N  - INFORMATICS ENGGINERRING
 # UIN MAULANA MALIK IBRAHIM MALANG
 
+# import ssl
 #----------------------- DJANGO -----------------------
 from __future__         import unicode_literals
 from django.shortcuts   import render
@@ -169,6 +170,8 @@ def get_title(request):
     global Titless
     global output_title
     if request.method   == 'POST':
+        import ssl
+        ssl._create_default_https_context = ssl._create_unverified_context
         Titless                             = request.POST["titless"]
         output_preprocessing['result_ner']  = {"ENTITY":Titless}
         print(output_preprocessing['result_ner'])
@@ -674,13 +677,13 @@ def check_answer_sparql(title,key,key_lemstem):
 
 
 def sparql_dbpedia(entity,relation):
-    sparql      = SPARQLWrapper("http://dbpedia.org/sparql")
+    sparql      = SPARQLWrapper("https://dbpedia.org/sparql")
     sparql.setQuery("""
-        PREFIX ontology: <http://dbpedia.org/ontology>
-        PREFIX dbo: <http://dbpedia.org/ontology/>
-        prefix dbc:<http://dbpedia.org/resource/Category:>
-        prefix dct:<http://purl.org/dc/terms/>
-        PREFIX dbp:<http://dbpedia.org/property/>
+        PREFIX ontology: <https://dbpedia.org/ontology>
+        PREFIX dbo: <https://dbpedia.org/ontology/>
+        prefix dbc:<https://dbpedia.org/resource/Category:>
+        prefix dct:<https://purl.org/dc/terms/>
+        PREFIX dbp:<https://dbpedia.org/property/>
         SELECT*WHERE{
             dbr:"""+ entity+""" ?p ?o .
             # <https://en.wikipedia.org/wiki/"""+ entity+"""> ?p ?o .
@@ -695,12 +698,12 @@ def sparql_dbpedia(entity,relation):
         for a in  result["results"]["bindings"]:
             p=""
             o=""
-            if re.match('http', a["p"]["value"]):
+            if re.match('https', a["p"]["value"]):
                 p=a["p"]["value"].rsplit('/', 1)[-1]
             else:
                 p=a["p"]["value"]
 
-            if re.match('http', a["o"]["value"]) :
+            if re.match('https', a["o"]["value"]) :
                 o=a["o"]["value"].rsplit('/', 1)[-1]
             else:
                 o=a["o"]["value"]
