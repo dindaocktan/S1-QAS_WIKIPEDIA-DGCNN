@@ -169,6 +169,19 @@
                                 {% endfor %}
                             </ul>
                         <h4>
+                        <hr><hr>NOT GRAPH</hr>
+                        <h4 class="wow fadeInUp " data-wow-delay="0.4s" style="color:black; text-align:justify">
+                            <!-- {{answer_sparql.answer_sparql}}
+                            {{answer_wikipedia.answer_wikipedia}} -->
+                            <ul>
+                                {% for as in answer_sparql_not_graph.answer_sparql %}
+                                    <li> <h4 style="color:black"> {{as}} </h4></li>
+                                {% endfor %}
+                                {% for aw in answer_cosinus_not_graph.answer_wikipedia %}
+                                    <li> <h4 style="color:black"><B>{{aw.0}}</B> , {{aw.2}} </h4></li>
+                                {% endfor %}
+                            </ul>
+                        <h4>
                     
                     </div>
                 </div>

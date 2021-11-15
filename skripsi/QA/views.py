@@ -131,10 +131,12 @@ def proses(request):
     if output_CNN['class']!=[]:
         for pc in numpy.array(output_CNN['class']):
             key.append(pc[1].lower())
-    
-    answer_sparql           = dict(check_answer_sparql(Titless,key, output_preprocessing["lexical_word"]))
+    merge = output_preprocessing["lexical_word"]+ output_graph_word['all_word']
+    answer_sparql           = dict(check_answer_sparql(Titless,key, merge))
+    answer_sparql_not_graph = dict(check_answer_sparql(Titless,key, output_preprocessing["lexical_word"]))
     # answer_cosinus          = dict(crawl_artikel(Question,Titless,output_preprocessing["lexical_word"],output_CNN['class']))
     answer_cosinus          = dict(crawl_artikel(Question,Titless,output_preprocessing["lexical_word"],output_graph_word['all_word']))
+    answer_cosinus_not_graph = dict(crawl_artikel(Question,Titless,output_preprocessing["lexical_word"],[]))
 
     end = time.time()
     print(end - start)
@@ -146,7 +148,9 @@ def proses(request):
         'result_title'          : output_title,
         'finally_title'         : Titless,
         'answer_sparql'         : answer_sparql,
+        'answer_sparql_not_graph': answer_sparql_not_graph,
         'answer_wikipedia'      : answer_cosinus,
+        'answer_cosinus_not_graph'  : answer_cosinus_not_graph,
     })
 
 def get_topic(request):
@@ -581,6 +585,9 @@ def cnn(word_question,detectNER,keyy):
 
     # return HttpResponse("cek di cmd" )
     # return render(request, 'layout/base.php', 'data':data)
+
+
+
 
 def title_wikipedia(title):
     print("\n\n ------------------------------------------------------ TITLE WIKIPEDIA - NGRAMS --------------------------------------------")
